@@ -9,7 +9,7 @@ LABEL "repository"="https://github.com/abatilo/actions-poetry"
 LABEL "homepage"="https://github.com/abatilo/actions-poetry"
 LABEL "maintainer"="abatilo"
 
-RUN pip install poetry==0.12.16
+RUN pip install poetry==0.12.17
 COPY entrypoint.sh /
 
 ENTRYPOINT [ "/entrypoint.sh" ]

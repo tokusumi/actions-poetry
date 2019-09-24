@@ -1,4 +1,4 @@
-FROM python:3.7.3-stretch
+FROM python:3.7.4-stretch
 
 LABEL "com.github.actions.name"="poetry - Python"
 LABEL "com.github.actions.description"="GitHub Actions for Python projects using poetry"

@@ -1,37 +1,9 @@
-FROM python:slim-buster
+FROM docker:dind
 
-ENV PYENV_ROOT=/root/.pyenv
-ENV PATH $PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH
+COPY Dockerfile-core entrypoint.sh /
 
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-      build-essential \
-      curl \
-      git \
-      libbz2-dev \
-      libffi-dev \
-      liblzma-dev \
-      libncurses5-dev \
-      libncursesw5-dev \
-      libreadline-dev \
-      libsqlite3-dev \
-      libssl-dev \
-      llvm \
-      make \
-      python-openssl \
-      tk-dev \
-      wget \
-      xz-utils \
-      zlib1g-dev \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+COPY setup.sh /setup.sh
 
-# Install pyenv, then install python versions
-RUN git clone --depth 1 https://github.com/pyenv/pyenv.git $PYENV_ROOT && \
-    rm -rfv $PYENV_ROOT/.git
+RUN chmod 755 /setup.sh
 
-# Install xxenv-latest, for inferring latest version of python
-RUN git clone https://github.com/momo-lab/xxenv-latest.git $PYENV_ROOT/plugins/xxenv-latest
-
-COPY requirements.txt entrypoint.sh /
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/setup.sh"]

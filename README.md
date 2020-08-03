@@ -24,17 +24,14 @@ jobs:
     - name: Install
       uses: abatilo/actions-poetry@v1.5.0
       with:
-        python_version: 3.8.0
-        poetry_version: 1.0
+        python_version: 3.8
+        poetry_version: 1.0.0
         working_directory: ./working_dir # Optional, defaults to '.'
-        args: install
     - name: Run pytest
       uses: abatilo/actions-poetry@v1.5.0
       with:
-        python_version: 3.8.0
-        poetry_version: 1.0
         working_directory: ./working_dir
-        args: run python -m pytest --cov=src --cov-branch --cov-fail-under=100 tests/
+        command: run python -m pytest --cov=src --cov-branch --cov-fail-under=100 tests/
 ```
 
 ## License
